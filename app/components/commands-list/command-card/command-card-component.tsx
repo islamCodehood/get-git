@@ -56,7 +56,7 @@ const CommandCard = ({ command }: {command: Command}) => {
 			</Typography>
 			<div className='flex flex-col'>
 				{command.flags?.length > 0 &&
-					command.flags.map((flag: any, index: number) => (
+					command.flags.map((flag: Flag, index: number) => (
 						<div key={index} className='flex flex-col mt-4 items-start'>
 							<Typography className='font-mono font-semibold text-sm text-gray-300 bg-gray-600 inline px-1 rounded-sm'>
 								{flag.name}
