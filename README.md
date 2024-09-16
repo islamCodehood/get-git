@@ -7,5 +7,6 @@ It's a git commands helper where you can:
 It is hosted on 
 
 Coming features:
-[] Search feature
-[] Visitors count
+1. Search feature ✅
+2. Visitors count
+3. Add more git commands
