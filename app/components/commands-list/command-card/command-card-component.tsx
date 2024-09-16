@@ -12,13 +12,12 @@ const CommandCard = ({ command }: any) => {
 		setCopied(true);
 	};
 
-  useEffect(() => {
-    if (!copied) return;
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  }, [copied]);
-
+	useEffect(() => {
+		if (!copied) return;
+		setTimeout(() => {
+			setCopied(false);
+		}, 2000);
+	}, [copied]);
 
 	return (
 		<Paper
@@ -58,12 +57,16 @@ const CommandCard = ({ command }: any) => {
 						</div>
 					))}
 			</div>
-      {copied && (
-        <Paper
-          className={`${copied ? 'block' : 'hidden'} fixed p-1 bg-gray-300 text-gray-800 top-3 left-1/2 translate-x-1/2 translate-y-1/2`}>
-          <Typography component='p' className='text-sm'>Copied!</Typography>
-        </Paper>
-      )}
+			{copied && (
+				<Paper
+					className={`${
+						copied ? 'block' : 'hidden'
+					} fixed p-1 bg-gray-300 text-gray-800 top-3 left-1/2 translate-x-1/2 translate-y-1/2`}>
+					<Typography component='p' className='text-sm'>
+						Copied!
+					</Typography>
+				</Paper>
+			)}
 		</Paper>
 	);
 };
