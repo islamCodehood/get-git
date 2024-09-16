@@ -7,17 +7,29 @@ type SearchProps = {
 const CommandsList = ({ searchValue }: SearchProps) => {
   const [filteredCommands, setFilteredCommands] = useState(commands);
 	useEffect(() => {
-		const filteredCommands = commands.filter(command => {
-			return (
-				command.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-				command.use.toLowerCase().includes(searchValue.toLowerCase()) ||
-				command.tag.toLowerCase().includes(searchValue.toLowerCase()) ||
-				command.flags.some(flag =>
-					flag.name.toLowerCase().includes(searchValue.toLowerCase())
-				)
-			);
-		});
-		setFilteredCommands(filteredCommands);
+    const formattedSearchValue = searchValue.trim().toLowerCase().split(' ')
+    formattedSearchValue.map((value) => {
+      const filteredCommands = commands.filter(command => {
+        return (
+          command.name.toLowerCase().includes(value) ||
+          command.use.toLowerCase().includes(value) ||
+          command.tag.toLowerCase().includes(value) ||
+          command.flags.some(flag =>
+            flag.name.toLowerCase().includes(value)
+          )
+        );
+      });
+      setFilteredCommands(filteredCommands);
+    })
+		// 	return (
+		// 		command.name.toLowerCase().includes(formattedSearchValue) ||
+		// 		command.use.toLowerCase().includes(formattedSearchValue) ||
+		// 		command.tag.toLowerCase().includes(formattedSearchValue) ||
+		// 		command.flags.some(flag =>
+		// 			flag.name.toLowerCase().includes(formattedSearchValue)
+		// 		)
+		// 	);
+		// });
 	}, [searchValue]);
 	return (
 		<div className='flex flex-col gap-6 justify-center items-center h-full w-full'>
