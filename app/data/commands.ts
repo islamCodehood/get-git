@@ -1,16 +1,92 @@
 export const commands = [
   {
-    name: "git init",
-    use: "Initializes a new Git repository in the directory",
+    name: "git add",
+    use: "Add file contents to the index (staging area)",
     flags: [
-      { name: "--bare", use: "Creates a bare repository" },
-      { name: "--quiet", use: "Suppresses all output" }
+      { name: "--all", use: "Stage all changes including untracked files" },
+      { name: "--patch", use: "Interactively stage changes" }
     ],
-    tag: "Repository Setup"
+    tag: "Changes"
+  },
+  {
+    name: "git am",
+    use: "Apply patches from a mailbox",
+    flags: [
+      { name: "--3way", use: "Attempt a three-way merge if patch applies with conflicts" },
+      { name: "--skip", use: "Skip the current patch and continue" }
+    ],
+    tag: "Patching"
+  },
+  {
+    name: "git archive",
+    use: "Create an archive of files from a named tree",
+    flags: [
+      { name: "--format", use: "Specify the format (e.g., tar, zip)" },
+      { name: "--prefix", use: "Prepend prefix to each filename in the archive" }
+    ],
+    tag: "Archiving"
+  },
+  {
+    name: "git bisect",
+    use: "Use binary search to find the commit that introduced a bug",
+    flags: [
+      { name: "--no-checkout", use: "Do not checkout the bisection commit" }
+    ],
+    tag: "Debugging"
+  },
+  {
+    name: "git branch",
+    use: "List, create, or delete branches",
+    flags: [
+      { name: "-d", use: "Delete a branch" },
+      { name: "-m", use: "Rename a branch" }
+    ],
+    tag: "Branching"
+  },
+  {
+    name: "git bundle",
+    use: "Move objects and refs by archive",
+    flags: [
+      { name: "--all", use: "Include all refs in the bundle" }
+    ],
+    tag: "Archiving"
+  },
+  {
+    name: "git checkout",
+    use: "Switch branches or restore working tree files",
+    flags: [
+      { name: "-b", use: "Create a new branch and switch to it" },
+      { name: "--track", use: "Set up tracking for a remote branch" }
+    ],
+    tag: "Branching"
+  },
+  {
+    name: "git cherry-pick",
+    use: "Apply the changes introduced by existing commits",
+    flags: [
+      { name: "--continue", use: "Continue cherry-pick after resolving conflicts" },
+      { name: "--abort", use: "Abort the cherry-pick" }
+    ],
+    tag: "Changes"
+  },
+  {
+    name: "git citool",
+    use: "Graphical alternative to git commit",
+    flags: [],
+    tag: "Changes"
+  },
+  {
+    name: "git clean",
+    use: "Remove untracked files from the working tree",
+    flags: [
+      { name: "-f", use: "Force clean untracked files" },
+      { name: "-d", use: "Remove untracked directories" }
+    ],
+    tag: "Cleanup"
   },
   {
     name: "git clone",
-    use: "Clones an existing repository into a new directory",
+    use: "Clone a repository into a new directory",
     flags: [
       { name: "--branch", use: "Clone a specific branch" },
       { name: "--depth", use: "Create a shallow clone with a limited history" }
@@ -18,237 +94,215 @@ export const commands = [
     tag: "Repository Setup"
   },
   {
-    name: "git add",
-    use: "Adds changes to the staging area",
-    flags: [
-      { name: "--all", use: "Stages all changes, including deletions" },
-      { name: "-p", use: "Interactively stage patches" }
-    ],
-    tag: "Committing"
-  },
-  {
     name: "git commit",
-    use: "Commits staged changes to the repository",
+    use: "Record changes to the repository",
     flags: [
-      { name: "-m", use: "Specifies a commit message" },
-      { name: "--amend", use: "Amends the last commit with staged changes" }
+      { name: "-m", use: "Specify the commit message inline" },
+      { name: "--amend", use: "Modify the most recent commit" }
     ],
-    tag: "Committing"
+    tag: "Changes"
   },
   {
-    name: "git status",
-    use: "Shows the working directory status",
+    name: "git describe",
+    use: "Give a human-readable name to a commit",
     flags: [
-      { name: "-s", use: "Shows status in short format" },
-      { name: "--ignored", use: "Shows ignored files as well" }
+      { name: "--tags", use: "Match lightweight and annotated tags" }
     ],
-    tag: "Working Directory"
+    tag: "Information"
+  },
+  {
+    name: "git diff",
+    use: "Show changes between commits, branches, or the working directory",
+    flags: [
+      { name: "--cached", use: "Show changes staged for the next commit" },
+      { name: "--name-only", use: "Show only names of changed files" }
+    ],
+    tag: "Changes"
+  },
+  {
+    name: "git fetch",
+    use: "Download objects and refs from another repository",
+    flags: [
+      { name: "--all", use: "Fetch all remotes" },
+      { name: "--prune", use: "Prune deleted branches on the remote" }
+    ],
+    tag: "Remote Operations"
+  },
+  {
+    name: "git format-patch",
+    use: "Prepare patches for e-mail submission",
+    flags: [
+      { name: "-n", use: "Number of commits to generate patches from" }
+    ],
+    tag: "Patching"
+  },
+  {
+    name: "git gc",
+    use: "Cleanup unnecessary files and optimize the local repository",
+    flags: [
+      { name: "--aggressive", use: "Perform an aggressive garbage collection" }
+    ],
+    tag: "Maintenance"
+  },
+  {
+    name: "git grep",
+    use: "Print lines matching a pattern",
+    flags: [
+      { name: "-i", use: "Case-insensitive search" },
+      { name: "-n", use: "Show line numbers" }
+    ],
+    tag: "Search"
+  },
+  {
+    name: "git init",
+    use: "Create an empty Git repository or reinitialize an existing one",
+    flags: [
+      { name: "--bare", use: "Create a bare repository" },
+      { name: "--quiet", use: "Suppress output" }
+    ],
+    tag: "Repository Setup"
   },
   {
     name: "git log",
-    use: "Displays the commit history",
+    use: "Show commit logs",
     flags: [
-      { name: "--oneline", use: "Shows each commit in one line" },
-      { name: "--graph", use: "Displays an ASCII graph of branch and merge history" }
+      { name: "--oneline", use: "Show condensed log with one line per commit" },
+      { name: "--graph", use: "Show a graph of the commit history" }
     ],
-    tag: "Commit History"
+    tag: "Information"
+  },
+  {
+    name: "git merge",
+    use: "Join two or more development histories together",
+    flags: [
+      { name: "--no-ff", use: "Create a merge commit even if fast-forward is possible" },
+      { name: "--squash", use: "Combine all changes into a single commit" }
+    ],
+    tag: "Branching"
+  },
+  {
+    name: "git mv",
+    use: "Move or rename a file, directory, or symlink",
+    flags: [],
+    tag: "Changes"
+  },
+  {
+    name: "git notes",
+    use: "Add or inspect object notes",
+    flags: [
+      { name: "add", use: "Add notes to an object" }
+    ],
+    tag: "Notes"
   },
   {
     name: "git pull",
-    use: "Fetches and integrates changes from the remote repository",
+    use: "Fetch from and integrate with another repository or a local branch",
     flags: [
-      { name: "--rebase", use: "Reapplies local commits on top of fetched commits" },
-      { name: "--ff-only", use: "Only fast-forward if possible" }
+      { name: "--rebase", use: "Reapply commits on top of fetched changes" }
     ],
     tag: "Remote Operations"
   },
   {
     name: "git push",
-    use: "Pushes changes to the remote repository",
+    use: "Update remote refs along with associated objects",
     flags: [
-      { name: "--force", use: "Forces the push, potentially overwriting history" },
-      { name: "--tags", use: "Pushes all tags" }
+      { name: "--force", use: "Force push" },
+      { name: "--tags", use: "Push all tags" }
     ],
     tag: "Remote Operations"
-  },
-  {
-    name: "git branch",
-    use: "Lists, creates, or deletes branches",
-    flags: [
-      { name: "-d", use: "Deletes a branch" },
-      { name: "-D", use: "Forcefully deletes a branch, even if it contains unmerged changes" }
-    ],
-    tag: "Branching"
-  },
-  {
-    name: "git checkout",
-    use: "Switches branches or restores files",
-    flags: [
-      { name: "-b", use: "Creates a new branch and switches to it" },
-      { name: "--", use: "Disambiguates arguments when switching files or branches" }
-    ],
-    tag: "Branching"
-  },
-  {
-    name: "git merge",
-    use: "Merges changes from one branch into another",
-    flags: [
-      { name: "--no-ff", use: "Creates a merge commit even if the merge could be fast-forwarded" },
-      { name: "--squash", use: "Squashes all commits into a single commit before merging" }
-    ],
-    tag: "Branching"
   },
   {
     name: "git rebase",
-    use: "Reapplies commits on top of another base commit",
+    use: "Reapply commits on top of another base tip",
     flags: [
-      { name: "-i", use: "Interactive rebase to edit, reorder, or squash commits" },
-      { name: "--abort", use: "Aborts the rebase process and returns to the pre-rebase state" }
+      { name: "--interactive", use: "Use interactive rebase" },
+      { name: "--abort", use: "Abort the rebase" }
     ],
     tag: "Branching"
   },
   {
-    name: "git fetch",
-    use: "Downloads objects and refs from another repository",
+    name: "git reset",
+    use: "Reset current HEAD to the specified state",
     flags: [
-      { name: "--all", use: "Fetch all remotes" },
-      { name: "--tags", use: "Fetch all tags" }
+      { name: "--soft", use: "Reset HEAD only" },
+      { name: "--hard", use: "Reset index and working tree" }
     ],
-    tag: "Remote Operations"
+    tag: "Changes"
   },
   {
-    name: "git reset",
-    use: "Resets current HEAD to a specified state",
+    name: "git restore",
+    use: "Restore working tree files",
     flags: [
-      { name: "--hard", use: "Resets index and working directory to match HEAD" },
-      { name: "--soft", use: "Resets only HEAD, leaving index and working directory unchanged" }
+      { name: "--staged", use: "Restore changes from index" }
     ],
-    tag: "Committing"
+    tag: "Changes"
   },
   {
     name: "git revert",
-    use: "Creates a new commit that undoes changes from a previous commit",
+    use: "Revert some existing commits",
     flags: [
-      { name: "--no-edit", use: "Uses the default commit message without prompting" }
+      { name: "--no-edit", use: "Don't edit the commit message" }
     ],
-    tag: "Committing"
+    tag: "Changes"
   },
   {
-    name: "git stash",
-    use: "Temporarily stores changes that are not ready to be committed",
+    name: "git rm",
+    use: "Remove files from the working tree and from the index",
     flags: [
-      { name: "--include-untracked", use: "Stash untracked files along with tracked ones" },
-      { name: "--keep-index", use: "Keep the index intact while stashing" }
+      { name: "--cached", use: "Remove file only from index" }
     ],
-    tag: "Working Directory"
-  },
-  {
-    name: "git diff",
-    use: "Shows differences between commits, branches, or the working directory",
-    flags: [
-      { name: "--cached", use: "Shows differences between the index and the last commit" },
-      { name: "--name-only", use: "Shows names of changed files without the actual changes" }
-    ],
-    tag: "Working Directory"
-  },
-  {
-    name: "git tag",
-    use: "Creates or lists tags",
-    flags: [
-      { name: "-a", use: "Creates an annotated tag" },
-      { name: "-d", use: "Deletes a tag" }
-    ],
-    tag: "Tagging"
-  },
-  {
-    name: "git remote",
-    use: "Manages remote repository connections",
-    flags: [
-      { name: "-v", use: "Displays the URLs of the remote connections" },
-      { name: "add", use: "Adds a new remote" }
-    ],
-    tag: "Remote Operations"
-  },
-  {
-    name: "git bisect",
-    use: "Uses binary search to find the commit that introduced a bug",
-    flags: [],
-    tag: "Debugging"
-  },
-  {
-    name: "git cherry-pick",
-    use: "Applies changes from a specific commit",
-    flags: [
-      { name: "--no-commit", use: "Applies changes without creating a commit" }
-    ],
-    tag: "Committing"
-  },
-  {
-    name: "git submodule",
-    use: "Manages submodules inside a Git repository",
-    flags: [
-      { name: "add", use: "Adds a new submodule" },
-      { name: "init", use: "Initializes submodules" },
-      { name: "update", use: "Updates submodules" }
-    ],
-    tag: "Submodules"
-  },
-  {
-    name: "git config",
-    use: "Configures user-level settings such as name and email",
-    flags: [
-      { name: "--global", use: "Applies settings globally across all repositories" },
-      { name: "--local", use: "Applies settings only to the local repository" }
-    ],
-    tag: "Configuration"
-  },
-  {
-    name: "git reflog",
-    use: "Shows the reference log, including changes to HEAD",
-    flags: [],
-    tag: "Debugging"
-  },
-  {
-    name: "git fsck",
-    use: "Verifies the integrity of the Git object database",
-    flags: [],
-    tag: "Maintenance"
-  },
-  {
-    name: "git archive",
-    use: "Creates a tar or zip archive of the repository",
-    flags: [
-      { name: "--format", use: "Specifies the format of the archive (e.g., tar, zip)" }
-    ],
-    tag: "Archiving"
-  },
-  {
-    name: "git prune",
-    use: "Removes unreachable objects from the repository",
-    flags: [],
-    tag: "Maintenance"
-  },
-  {
-    name: "git gc",
-    use: "Cleans up unnecessary files and optimizes the repository",
-    flags: [],
-    tag: "Maintenance"
-  },
-  {
-    name: "git blame",
-    use: "Shows the commit and author responsible for each line in a file",
-    flags: [
-      { name: "-L", use: "Limits the range of lines to annotate" }
-    ],
-    tag: "Debugging"
+    tag: "Changes"
   },
   {
     name: "git shortlog",
-    use: "Summarizes commit history",
+    use: "Summarize git log output",
+    flags: [],
+    tag: "Information"
+  },
+  {
+    name: "git show",
+    use: "Show various types of objects",
+    flags: [],
+    tag: "Information"
+  },
+  {
+    name: "git stash",
+    use: "Stash the changes in a dirty working directory away",
     flags: [
-      { name: "-s", use: "Shows only the number of commits per author" },
-      { name: "-n", use: "Sorts by the number of commits per author" }
+      { name: "--include-untracked", use: "Also stash untracked files" }
     ],
-    tag: "Commit History"
+    tag: "Changes"
+  },
+  {
+    name: "git status",
+    use: "Show the working tree status",
+    flags: [
+      { name: "-s", use: "Short status" }
+    ],
+    tag: "Information"
+  },
+  {
+    name: "git submodule",
+    use: "Initialize, update, or inspect submodules",
+    flags: [],
+    tag: "Submodules"
+  },
+  {
+    name: "git switch",
+    use: "Switch branches",
+    flags: [
+      { name: "-c", use: "Create a new branch" },
+      { name: "--detach", use: "Switch to a commit" }
+    ],
+    tag: "Branching"
+  },
+  {
+    name: "git tag",
+    use: "Create, list, delete, or verify a tag object signed with GPG",
+    flags: [
+      { name: "-a", use: "Create an annotated tag" }
+    ],
+    tag: "Tagging"
   }
 ];
+
