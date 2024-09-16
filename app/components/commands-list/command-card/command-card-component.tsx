@@ -32,7 +32,7 @@ const CommandCard = ({ command }: {command: Command}) => {
 	return (
 		<Paper
 			elevation={hovered ? 6 : 3}
-			className='p-6 w-full bg-[#222] rounded-lg flex flex-col cursor-copy'
+			className='p-6 w-full bg-[#222222] rounded-lg flex flex-col cursor-copy'
 			onClick={handleCopy}
 			onMouseLeave={() => setHovered(false)}
 			onMouseEnter={() => setHovered(true)}>
