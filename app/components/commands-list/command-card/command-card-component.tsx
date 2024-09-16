@@ -2,8 +2,18 @@
 import { IconButton, Paper, Typography } from '@mui/material';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { useEffect, useState } from 'react';
+type Command = {
+  name: string
+  use: string
+  flags: Flag[]
+  tag: string
+}
+type Flag = {
+  name: string
+  use: string
+}
 
-const CommandCard = ({ command }: any) => {
+const CommandCard = ({ command }: {command: Command}) => {
 	const [copied, setCopied] = useState(false);
 	const [hovered, setHovered] = useState(false);
 
