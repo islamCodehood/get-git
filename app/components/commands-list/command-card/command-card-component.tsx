@@ -1,5 +1,5 @@
 'use client';
-import { IconButton, Paper, Typography } from '@mui/material';
+import { IconButton } from '@mui/material';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { useEffect, useState } from 'react';
 type Command = {
@@ -30,54 +30,52 @@ const CommandCard = ({ command }: {command: Command}) => {
 	}, [copied]);
 
 	return (
-		<Paper
-			elevation={hovered ? 6 : 3}
-			className='p-6 w-full bg-[#222222] rounded-lg flex flex-col cursor-copy'
+		<div
+			// elevation={hovered ? 6 : 3}
+			className={`p-6 w-full bg-[#222222] rounded-lg flex flex-col cursor-copy ${ hovered ? 'shadow-lg' : 'shadow-md'}`}
 			onClick={handleCopy}
 			onMouseLeave={() => setHovered(false)}
 			onMouseEnter={() => setHovered(true)}>
 			<div className='flex justify-between'>
-				<Typography
-					component='h3'
+				<h3
 					className='font-mono font-semibold text-sm text-gray-400'>
 					# {command.tag}
-				</Typography>
+				</h3>
 				<IconButton className='text-gray-400' onClick={handleCopy}>
 					<ContentCopyOutlinedIcon />
 				</IconButton>
 			</div>
-			<Typography
-				component='h2'
+			<h2
 				className='font-mono font-semibold text-lg text-sky-400'>
 				{command.name}
-			</Typography>
-			<Typography component='p' className='font-mono text-sm text-gray-300'>
+			</h2>
+			<p className='font-mono text-sm text-gray-300'>
 				{command.use}
-			</Typography>
+			</p>
 			<div className='flex flex-col'>
 				{command.flags?.length > 0 &&
 					command.flags.map((flag: Flag, index: number) => (
 						<div key={index} className='flex flex-col mt-4 items-start'>
-							<Typography className='font-mono font-semibold text-sm text-gray-300 bg-gray-600 inline px-1 rounded-sm'>
+							<p className='font-mono font-semibold text-sm text-gray-300 bg-gray-600 inline px-1 rounded-sm'>
 								{flag.name}
-							</Typography>
-							<Typography component='p' className='font-mono text-sm text-gray-300'>
+							</p>
+							<p className='font-mono text-sm text-gray-300'>
 								{flag.use}
-							</Typography>
+							</p>
 						</div>
 					))}
 			</div>
 			{copied && (
-				<Paper
+				<div
 					className={`${
 						copied ? 'block' : 'hidden'
 					} fixed p-1 bg-gray-300 text-gray-800 top-3 left-1/2 translate-x-1/2 translate-y-1/2`}>
-					<Typography component='p' className='text-sm'>
+					<p className='text-sm'>
 						Copied!
-					</Typography>
-				</Paper>
+					</p>
+				</div>
 			)}
-		</Paper>
+		</div>
 	);
 };
 
