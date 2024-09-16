@@ -1,6 +1,6 @@
 import { OutlinedInput } from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-const Search = ({handleSearch, searchValue}: {handleSearch: Function, searchValue: string}) => {
+const Search = ({handleSearch}: {handleSearch: Function}) => {
   return (
     <div className="mb-6 w-full">
       <OutlinedInput
