@@ -44,8 +44,12 @@ const CommandCard = ({ command }: CommandCardProps) => {
 				<h3 className='font-mono font-semibold text-sm text-gray-400'>
 					# {command.tag}
 				</h3>
-				<IconButton className='text-gray-400' onClick={handleCopy}>
-					<ContentCopyOutlinedIcon />
+				<IconButton sx={{
+					color: 'gray',
+				}} onClick={handleCopy}>
+					<ContentCopyOutlinedIcon sx={{
+						color: 'gray',
+					}} />
 				</IconButton>
 			</div>
 			<h2 className='font-mono font-semibold text-lg text-sky-400'>
