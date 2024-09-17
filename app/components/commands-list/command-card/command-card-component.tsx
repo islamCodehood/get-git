@@ -17,7 +17,6 @@ type Flag = {
 
 const CommandCard = ({ command }: CommandCardProps) => {
 	const [copied, setCopied] = useState(false);
-	const [hovered, setHovered] = useState(false);
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(command.name);
@@ -36,9 +35,7 @@ const CommandCard = ({ command }: CommandCardProps) => {
 			<div
 				className='p-6 w-full bg-[#222222] rounded-lg flex flex-col cursor-pointer transition duration-300 ease-in-out transform hover:scale-[1.01] 
 			hover:bg-[#2c2a2a] shadow-md'
-				onClick={handleCopy}
-				onMouseLeave={() => setHovered(false)}
-				onMouseEnter={() => setHovered(true)}>
+				onClick={handleCopy}>
 				<div className='flex justify-between'>
 					<h3 className='font-mono font-semibold text-sm text-gray-400'>
 						# {command.tag}
