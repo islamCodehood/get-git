@@ -1,5 +1,3 @@
-import { OutlinedInput } from '@mui/material';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 const Search = ({
 	handleSearch,
 }: {
@@ -18,7 +16,6 @@ const Search = ({
 					handleSearch(e.target.value)
 				}
 			/>
-			{/* <SearchOutlinedIcon className='text-gray-400' /> */}
 		</div>
 	);
 };

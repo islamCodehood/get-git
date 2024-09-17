@@ -1,5 +1,3 @@
-import { Typography } from '@mui/material';
-
 const Header = () => {
 	return (
 		<header className='py-6 px-10 border-b border-gray-500'>
