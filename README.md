@@ -4,7 +4,7 @@ It's a git commands helper where you can:
 - Search for a command by name, use, flag, or tag. 
 - Copy the needed command to start using in terminal.
 
-It is hosted on 
+It is hosted on https://getgit.islamsayed.me/
 
 Coming features:
 1. Search feature ✅
