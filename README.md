@@ -8,5 +8,8 @@ It is hosted on https://getgit.islamsayed.me/
 
 Coming features:
 1. Search feature ✅
-2. Visitors count
-3. Add more git commands
+2. Visitors count 
+3. Add more git commands 
+4. Favorites list
+5. User-friendly description.
+6. Represent command with example.
