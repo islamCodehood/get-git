@@ -10,7 +10,7 @@ export default function Home() {
 	};
 	return (
 		<main>
-			<div className=' py-10 xl:px-40 lg:px-8 md:px-5 px-3'>
+			<div className='py-10 xl:px-56 lg:px-36 md:px-24 px-3'>
 				<Search handleSearch={handleSearch} />
 				<CommandsList searchValue={searchValue} />
 			</div>
